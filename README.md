@@ -25,7 +25,7 @@ need help? want to get notified about updates? have feedback? join <https://disc
 
 ### install through link
 
-1. add `https://refact0r.github.io/system24/theme/system24.theme.css` to your theme import links.
+1. add `https://baka-aho.github.io/system24/theme/system24.theme.css` to your theme import links.
 
 ## flavors
 
