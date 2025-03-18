@@ -1,67 +1,84 @@
-/* unrounding */
+/* unrounding (apply to everything by default) */
 ::-webkit-scrollbar-thumb,
 * {
-	border-radius: 0 !important;
+    border-radius: 0 !important;
 }
-/* hide round masks */
+
+/* hide round masks for server icons only, not avatars */
 [class^='listItem_'] [class^='wrapper_'] > [class^='svg_'] > mask,
 [class^='bannerSVGWrapper_'] > mask > circle {
-	display: none;
+    display: none;
 }
+
+/* Ensure avatar masks are preserved but don’t enforce square shape */
 [class^='mask_'] > foreignObject,
 [class^='svg_'] > foreignObject {
-	mask-image: none;
+    mask-image: none; /* Remove mask but keep structure */
 }
 
-/* fiil circle mask on profile avatar */
-.overlay__75742:after,  /* profile popup */
-.overlay_c0bea0:after {
-	/* user settings */
-	border-radius: 0;
+/* Make profile avatars and server icons circular (override unrounding) */
+.wrapper__44b0c, /* Avatar wrapper (all sizes) */
+.avatar__44b0c, /* Avatar image container */
+.avatar_c19a55, /* Avatar from previous snippet */
+.clickable_c19a55, /* Clickable avatar variant */
+.avatar_eb2508, /* New avatar container */
+.avatarBackground_eb2508, /* New avatar background */
+[class^='avatar_'], /* Any avatar class */
+[class^='avatar_'] img, /* Avatar images */
+.avatarStack__44b0c img, /* Images in avatar stack */
+.wrapper__6e9f8, /* Server icon wrapper */
+.icon__6e9f8 /* Server icon image */ {
+    border-radius: 50% !important;
 }
 
-/* hide status indicators */
+/* Ensure pseudo-elements and overlays for avatars are circular */
+.overlay__75742:after, /* Profile popup */
+.overlay_c0bea0:after /* User settings */ {
+    border-radius: 50% !important;
+}
+
+/* hide status indicators only (not the entire mask SVG) */
 [class^='mask_'] > rect,
-[class^='mask_'] > circle,
-[class^='mask_'] > svg {
-	display: none;
+[class^='mask_'] > circle {
+    display: none;
 }
 
 /* re-add status indicators */
 .wrapper__44b0c:has(rect)::after {
-	content: '';
-	display: block;
-	position: absolute;
-	height: 8px;
-	width: 8px;
-	bottom: -4px;
-	right: -4px;
-	border: 2px solid var(--bg-0);
+    content: '';
+    display: block;
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    bottom: -4px;
+    right: -4px;
+    border: 2px solid var(--bg-0);
+    border-radius: 50% !important; /* Circular status dots */
 }
 .wrapper__44b0c:has(rect[fill='#23a55a'])::after {
-	background: var(--online-dot) !important;
+    background: var(--online-dot) !important;
 }
 .wrapper__44b0c:has(rect[fill='#f23f43'])::after {
-	background: var(--dnd-dot) !important;
+    background: var(--dnd-dot) !important;
 }
 .wrapper__44b0c:has(rect[fill='#f0b232'])::after {
-	background: var(--idle-dot) !important;
+    background: var(--idle-dot) !important;
 }
 .wrapper__44b0c:has(rect[fill='#80848e'])::after {
-	background: var(--txt-3) !important;
+    background: var(--txt-3) !important;
 }
 .wrapper__44b0c:has(rect[fill='#593695'])::after {
-	background: var(--streaming-dot);
+    background: var(--streaming-dot);
 }
 
 /* fix server list badges */
 [class^='lowerBadge_'] {
-	border: 2px solid var(--bg-0);
-	bottom: -4px;
-	right: -4px;
+    border: 2px solid var(--bg-0);
+    bottom: -4px;
+    right: -4px;
 }
 [class^='upperBadge_'] {
-	border: 2px solid var(--bg-0);
-	top: -4px;
-	right: -4px;
+    border: 2px solid var(--bg-0);
+    top: -4px;
+    right: -4px;
 }
