@@ -15,6 +15,7 @@
 
 /* Target profile avatars and make them circular */
 .avatar__1fed1,
+.avatar_c19a55,
 .avatar__991e2, /* General avatar class */
 .wrapper__44b0c, /* Avatar wrapper in various contexts */
 .overlay__75742, /* Profile popup overlay */
@@ -26,6 +27,7 @@
 /* Ensure the container doesn't override the shape */
 .wrapper__44b0c,
 .avatar__1fed1,
+.avatar_c19a55,
 .overlay__75742:after,
 .overlay_c0bea0:after {
     border-radius: 50% !important;
