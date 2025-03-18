@@ -1,30 +1,45 @@
-/* unrounding */
+/* unrounding (keep this for non-icon elements if desired) */
 ::-webkit-scrollbar-thumb,
-* {
-	border-radius: 0 !important;
+*:not([class^='listItem_']):not([class^='wrapper_']):not([class^='blobContainer_']) {
+    border-radius: 0 !important;
 }
-/* hide round masks */
+
+/* Target server icons and make them circular */
+[class^='listItem_'] [class^='wrapper_'], /* Server icon wrapper */
+[class^='blobContainer_'], /* Alternative server icon container */
+[class^='wrapper_'] > svg > foreignObject > img /* Server icon image */ {
+    border-radius: 50% !important;
+}
+
+/* Ensure hover doesn’t override */
+[class^='listItem_']:hover [class^='wrapper_'],
+[class^='blobContainer_']:hover,
+[class^='wrapper_']:hover > svg > foreignObject > img {
+    border-radius: 50% !important;
+}
+
+/* hide round masks (unchanged) */
 [class^='listItem_'] [class^='wrapper_'] > [class^='svg_'] > mask,
 [class^='bannerSVGWrapper_'] > mask > circle {
-	display: flex;
+    display: flex;
 }
 [class^='mask_'] > foreignObject,
 [class^='svg_'] > foreignObject {
-	mask-image: flex;
+    mask-image: flex;
 }
 
-/* Target profile avatars and make them circular */
+/* Target profile avatars and make them circular (unchanged) */
 .avatar__1fed1,
 .avatar_c19a55,
-.avatar__991e2, /* General avatar class */
-.wrapper__44b0c, /* Avatar wrapper in various contexts */
-.overlay__75742, /* Profile popup overlay */
-.overlay_c0bea0, /* User settings overlay */
-[class^='avatar_'] /* Any class starting with 'avatar_' */ {
-    border-radius: 50% !important; /* Makes the avatar fully circular */
+.avatar__991e2,
+.wrapper__44b0c,
+.overlay__75742,
+.overlay_c0bea0,
+[class^='avatar_'] {
+    border-radius: 50% !important;
 }
 
-/* Ensure the container doesn't override the shape */
+/* Ensure avatar containers stay circular (unchanged) */
 .wrapper__44b0c,
 .avatar__1fed1,
 .avatar_c19a55,
@@ -33,54 +48,54 @@
     border-radius: 50% !important;
 }
 
-/* Optional: Fix status indicator positioning if needed */
+/* Optional: Fix status indicator positioning (unchanged) */
 .wrapper__44b0c:has(rect)::after {
-    border-radius: 50% !important; /* Keeps status dots circular */
+    border-radius: 50% !important;
 }
 
-/* hide status indicators */
+/* hide status indicators (unchanged) */
 [class^='mask_'] > rect,
 [class^='mask_'] > circle,
 [class^='mask_'] > svg {
-	display: none;
+    display: none;
 }
 
-/* re-add status indicators */
+/* re-add status indicators (unchanged) */
 .wrapper__44b0c:has(rect)::after {
-	content: '';
-	display: block;
-	position: absolute;
-	height: 8px;
-	width: 8px;
-	bottom: -4px;
-	right: -4px;
+    content: '';
+    display: block;
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    bottom: -4px;
+    right: -4px;
     border-radius: 25px;
-	border: 2px solid var(--bg-0);
+    border: 2px solid var(--bg-0);
 }
 .wrapper__44b0c:has(rect[fill='#23a55a'])::after {
-	background: var(--online-dot) !important;
+    background: var(--online-dot) !important;
 }
 .wrapper__44b0c:has(rect[fill='#f23f43'])::after {
-	background: var(--dnd-dot) !important;
+    background: var(--dnd-dot) !important;
 }
 .wrapper__44b0c:has(rect[fill='#f0b232'])::after {
-	background: var(--idle-dot) !important;
+    background: var(--idle-dot) !important;
 }
 .wrapper__44b0c:has(rect[fill='#80848e'])::after {
-	background: var(--txt-3) !important;
+    background: var(--txt-3) !important;
 }
 .wrapper__44b0c:has(rect[fill='#593695'])::after {
-	background: var(--streaming-dot);
+    background: var(--streaming-dot);
 }
 
-/* fix server list badges */
+/* fix server list badges (unchanged) */
 [class^='lowerBadge_'] {
-	border: 2px solid var(--bg-0);
-	bottom: -4px;
-	right: -4px;
+    border: 2px solid var(--bg-0);
+    bottom: -4px;
+    right: -4px;
 }
 [class^='upperBadge_'] {
-	border: 2px solid var(--bg-0);
-	top: -4px;
-	right: -4px;
+    border: 2px solid var(--bg-0);
+    top: -4px;
+    right: -4px;
 }
